@@ -1,8 +1,9 @@
 const inquirer = require("inquirer")
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
-const { engine } = require("express/lib/application")
-
+const Intern = require("./lib/Intern")
+const createHtmlTemplate = require("./src/htmlTemplate")
+const fs = require("fs")
 
 const askManagerData = ()=>{
 
@@ -124,11 +125,67 @@ const askEngineerData = (obj)=>{
         return obj
     })
 }
-const askInternData = ()=>{
-    console.log("intern data asking")
+const askInternData = (obj)=>{
+    
+    return inquirer.prompt([
+        {
+            type:"input",
+            name: "InternName",
+            message:"Type the Intern's Name: (Required)",
+            validate: (data)=>{
+                if(data) return true
+                else {
+                    console.log("Please Enter the Intern's Name:")
+                }
+            }
+        },
+        {
+            type:"number",
+            name: "InternId",
+            message:"Type the Intern's Id: (Required)",
+            validate: (data)=>{
+                if(data) return true
+                else {
+                    console.log("Please Enter the Intern's Id:")
+                }
+            }
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "Please provide Intern's Email: (Required)",
+            validate: function (email) {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log("Please enter a valid email:")
+                    return false;
+                }  
+            }
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "Please provide Interns's School Name: (Required)",
+            validate: function (school) {
+                if (school) {
+                    return true;
+                } else {
+                    console.log("Please enter the School Name:")
+                    return false;
+                }  
+            } 
+        }
+    ])
+    .then(answers=>{
+        const i1 = new Intern(answers.InternName,answers.InternId,answers.email,answers.school)
+        obj.interns = Intern.interns
+        return obj
+    })
 }
 const showOptions = (obj)=>{
-    console.log(obj)
+    //console.log(obj)
     return inquirer.prompt([
         {
             type: "number",
@@ -143,44 +200,35 @@ const showOptions = (obj)=>{
         if(answers.option === 1) {
             askEngineerData(obj)
             .then(object=>{
-                console.log(object)
+                //console.log(object)
+                showOptions(object)
             })
-        }//add engineer
+        }
         else if(answers.option === 2){
-            askInternData()
-        } //add intern
-        else if(answers.option === 3) {}//finsih the process write to the file
+            askInternData(obj)
+            .then(object=>{
+                //console.log(object)
+                showOptions(object)
+            })
+        }
+        else if(answers.option === 3) {
+            console.log("final Data:")
+            console.log(obj)
+            const htmlData = createHtmlTemplate(obj) //will return me the html stuff
+            fs.writeFile("./dist/index.html", htmlData, err => {
+                if (err) throw new Error(err);
+                console.log('Page created! Check out index.html in this directory to see it!');
+              });
+
+
+
+            // the html stuff will be written into index.html using fs here
+
+        }
         else {
             console.log("Invalid Input\n")//start the process again
             showOptions();
         }
     })
 }
-
-
-
-
-
-askManagerData()
-        .then(showOptions)
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const e1 = new Engineer("karan",23,"email1","kkkaran")
-// const e2 = new Engineer("tim",53,"email2","poyio")
-// const e3 = new Engineer("Anthony",63,"email3","demiop")
-
-
-// console.log(Engineer.engineers)
+askManagerData().then(showOptions)
