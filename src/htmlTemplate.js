@@ -11,7 +11,7 @@ const generateEngineers = engineers => {
           <div class="card-body">
             <div class="cardheader">
               <h4 class="card-title">${engineer.name}</h4>
-              <h5 class="card-subtitle mb-2">Engineer</h5>
+              <h5 class="card-subtitle mb-2"><img src="../icons/engineer.png" alt="engineer icon" height="25px" width="25px">Engineer</h5>
             </div>
             <div class="details">
               <h6>ID : ${engineer.id}</h6>
@@ -38,7 +38,7 @@ const generateInterns = interns => {
           <div class="card-body">
             <div class="cardheader">
               <h4 class="card-title">${intern.name}</h4>
-              <h5 class="card-subtitle mb-2">Intern</h5>
+              <h5 class="card-subtitle mb-2"><img src="../icons/intern.png" alt="intern icon" height="25px" width="25px">Intern</h5>
             </div>
             <div class="details">
               <h6>ID : ${intern.id}</h6>
@@ -74,7 +74,7 @@ const createHtmlTemplate = (infoObject)=>{
         <div class="card-body">
           <div class="cardheader">
             <h4 class="card-title">${manager.name}</h4>
-            <h5 class="card-subtitle mb-2">Manager</h5>
+            <h5 class="card-subtitle mb-2"><img src="../icons/manager.png" alt="manager icon" height="25px" width="25px">Manager</h5>
           </div>
           <div class="details">
             <h6>ID : ${manager.id}</h6>
