@@ -5,17 +5,26 @@ const generateEngineers = engineers => {
     }
   
     return `
-      <section class="my-3" id="about">
-        <h2 class="text-dark bg-primary p-2 display-inline-block">Engineers:</h2>
-        <p>
-            ${engineers.map(eng=>{
-            return `
-                <h2>${eng.name} ---- ${eng.email}</h2>
-            `
-            }).join("")}
-        </p>
-      </section>
-    `;
+      ${engineers.map(engineer=>{
+        return `
+          <div class="card" style="width: 18rem; height: 17rem;">
+          <div class="card-body">
+            <div class="cardheader">
+              <h4 class="card-title">${engineer.name}</h4>
+              <h5 class="card-subtitle mb-2">Engineer</h5>
+            </div>
+            <div class="details">
+              <h6>ID : ${engineer.id}</h6>
+              <h6>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></h6>
+              <h6>Github: <a href="https://github.com/${engineer.github}">${engineer.github}</a></h6>
+            </div>
+          </div>
+        </div>
+    `
+      }).join("")}
+    
+    `
+    ;
   };
 const generateInterns = interns => {
     if (!interns) {
@@ -23,17 +32,25 @@ const generateInterns = interns => {
     }
   
     return `
-      <section class="my-3" id="about">
-        <h2 class="text-dark bg-primary p-2 display-inline-block">Interns:</h2>
-        <p>
-            ${interns.map(int=>{
-            return `
-                <h2>${int.name} ---- ${int.email}</h2>
-            `
-            }).join("")}
-        </p>
-      </section>
-    `;
+    ${interns.map(intern=>{
+      return `
+        <div class="card" style="width: 18rem; height: 17rem;">
+          <div class="card-body">
+            <div class="cardheader">
+              <h4 class="card-title">${intern.name}</h4>
+              <h5 class="card-subtitle mb-2">Intern</h5>
+            </div>
+            <div class="details">
+              <h6>ID : ${intern.id}</h6>
+              <h6>Email: <a href="mailto:${intern.email}">${intern.email}</a></h6>
+              <h6>School: ${intern.school}</h6>
+            </div>
+          </div>
+        </div>
+  `
+    }).join("")}
+  
+  `
   };
 const createHtmlTemplate = (infoObject)=>{
     const {manager,engineers,interns} = infoObject
@@ -46,21 +63,36 @@ const createHtmlTemplate = (infoObject)=>{
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Portfolio Demo</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-    
-        <h1>Manager: ${manager.name}---->${manager.email}</h1>
-        
-        ${generateEngineers(engineers)}
-        ${generateInterns(interns)}
+      <header><div><h1>The A-TEAM</h1></div></header>
+      <div class="container d-flex justify-content-around flex-wrap maincontent">
+        <!--this is the manager section-->
+        <div class="card" style="width: 18rem; height: 17rem;">
+        <div class="card-body">
+          <div class="cardheader">
+            <h4 class="card-title">${manager.name}</h4>
+            <h5 class="card-subtitle mb-2">Manager</h5>
+          </div>
+          <div class="details">
+            <h6>ID : ${manager.id}</h6>
+            <h6>Email: <a href="mailto:${manager.email}">${manager.email}</a></h6>
+            <h6>Office Number: ${manager.officeNumber}</h6>
+          </div>
+        </div>
+      </div>
+      ${generateEngineers(engineers)}
+      ${generateInterns(interns)}
+      </div>
+      <footer>
+      <h3>&copy; ${new Date().getFullYear()} by Karan Sodhi</h3>
+      </footer>
 
-    </body>
-    <footer class="container text-center py-3">
-      <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${manager.name}</h3>
-    </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      
+      </body>
     </html>
     `;
 }

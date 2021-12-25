@@ -5,6 +5,7 @@ const Intern = require("./lib/Intern")
 const createHtmlTemplate = require("./src/htmlTemplate")
 const fs = require("fs")
 
+//manager inputs are asked below
 const askManagerData = ()=>{
 
     return inquirer.prompt([
@@ -66,6 +67,7 @@ const askManagerData = ()=>{
         return data 
     })
 }
+//engineer inputs are asked below
 const askEngineerData = (obj)=>{
     //console.log(obj)
     return inquirer.prompt([
@@ -125,6 +127,7 @@ const askEngineerData = (obj)=>{
         return obj
     })
 }
+//intern inputs are asked below
 const askInternData = (obj)=>{
     
     return inquirer.prompt([
@@ -184,6 +187,7 @@ const askInternData = (obj)=>{
         return obj
     })
 }
+//the user is presented with the options
 const showOptions = (obj)=>{
     //console.log(obj)
     return inquirer.prompt([
@@ -231,4 +235,5 @@ const showOptions = (obj)=>{
         }
     })
 }
+//main call and send sent to process the inputs
 askManagerData().then(showOptions)
