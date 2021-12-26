@@ -1,3 +1,5 @@
+![](screenshots/mainpage.PNG)
+# Video Link: https://drive.google.com/drive/folders/1tTFLu-ICLvDWMK8Bul5zr5DYh8CUQOBv
 <h1 align='center'>Team Profile Generator<span><img src="icons/project.png" height="25" width="25"/></span></h1>
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
     <h2 id="description">Description</h2>
@@ -18,7 +20,7 @@
     <p><img src="icons/wheel.png" height="18" width="20"/>Inquirer and  Jest</p>
     <hr>
     <h2 id="usage">Usage</h2>
-    <p><img src="icons/laptop.png" height="18" width="20"/>UofT Bootcamp</p>
+    <p><img src="icons/laptop.png" height="18" width="20"/>The user will run the index.js and provide all the inputs accordingly.</p>
     <hr>
     <h2 id="license">License</h2>
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg"/>
