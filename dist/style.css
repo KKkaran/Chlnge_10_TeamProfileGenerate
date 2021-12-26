@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    background-color: cadetblue;
+}
+header h1, footer{
+    color: white;
+}
+header div, footer{
+    background-color: rgb(82, 66, 82);
+    padding: 30px;
+    text-align: center;
+}
+.maincontent{
+    min-height: calc(100vh - 112px - 100px);
+    padding: 20px;
+}
+
+.card{
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  position: relative;
+  background-color: rgb(204, 198, 198);
+  margin: 10px;
+}
+.cardheader{
+    background-color: rgb(68, 68, 235);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    
+}
+.details{
+    position: relative;
+    margin-top: 90px;
+}
+
+.details > *{
+    background-color: white;
+    font-size: 17px;
+    padding: 10px;
+}
+.details a{
+    text-decoration: none;
+}
